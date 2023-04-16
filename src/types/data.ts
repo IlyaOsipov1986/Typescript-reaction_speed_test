@@ -1,5 +1,4 @@
-export interface ITodo {
+export interface GridNumbers {
     id: number;
-    title: string;
-    complete: boolean;
+    value: number;
 }

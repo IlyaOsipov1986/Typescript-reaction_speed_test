@@ -1,51 +1,22 @@
-import React, {useState} from 'react';
-import './App.css';
-import {ITodo} from "../../types/data";
-import TodoList from "../TodoList/TodoList";
-import {Simulate} from "react-dom/test-utils";
-import keyDown = Simulate.keyDown;
+import React, {useEffect, useState} from 'react';
+import {GridNumbers} from "../../types/data";
+import TableNumbers from "../TableNumbers/TableNumbers";
 
 const App: React.FC = () => {
 
-    const [value, setValue] = useState('');
-    const [todos, setTodos] = useState<ITodo[]>([]);
+    const [numbers, setNumbers] = useState<GridNumbers[]>([]);
 
-    const addTodo = () => {
-        if (value) {
-            setTodos([...todos, {
-                id: Date.now(),
-                title: value,
-                complete: false
-            }])
-           setValue('');
+    function generateNumbers (value: number) {
+        const numberArr = []
+        for (let i = 1; i <= value; i++) {
+                numberArr.push({id: i, value: i})
         }
+        return setNumbers(numberArr)
     }
 
-    const removeTodo = (id: number) : void => {
-        setTodos(todos.filter(todo => todo.id !== id))
-    }
-
-    const toggleTodo = (id: number) : void => {
-        setTodos(todos.map(todo => {
-            if (todo.id !== id) {
-                return todo
-            }
-            return {
-                ...todo,
-                complete: !todo.complete
-            }
-        }))
-    }
-
-    const handlehange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        setValue(e.target.value)
-    }
-
-    const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-        if(e.key === 'Enter') {
-            addTodo()
-        }
-    }
+    useEffect(() => {
+        generateNumbers(50)
+    },[])
 
   return (
     <div className="App">
@@ -56,12 +27,14 @@ const App: React.FC = () => {
             </div>
             <div className="test-page-rules-title">
                 <h3 className="test-page-rules-title__title">1 to 50</h3>
-                <p className="test-page-rules-title__riles">Touching from 1 to 50 as fast as yuo can.</p>
+                <p className="test-page-rules-title__riles">Touching from 1 to 50 as fast as you can.</p>
                 <button className="test-page-rules-title__restart-btn">Restart</button>
             </div>
             <div className="test-page-container">
                 <div className="test-page-main-block">
-
+                    <TableNumbers
+                        numbers={numbers}
+                    />
                 </div>
             </div>
         </div>

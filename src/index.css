@@ -1,1 +1,4 @@
 @import url(utils/vendor/normalize.css);
+@import url(./components/App/App.css);
+@import url(./components/ItemTable/ItemTable.css);
+@import url(./components/TableNumbers/TableNumbers.css);
