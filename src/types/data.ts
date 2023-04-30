@@ -1,4 +1,4 @@
 export interface GridNumbers {
-    id: number;
-    value: number;
+    id?: number;
+    value?: number;
 }
