@@ -6,6 +6,7 @@ interface TableNumberProps {
     startTimer: (id?: number) => void;
     numbers: GridNumbers[],
     isTableItems: GridNumbers[],
+    isCountTimer: number,
     setRandomSortFirstHalf: ([]) => void,
     setRandomSortSecondHalf: ([]) => void
 }
@@ -16,6 +17,7 @@ const TableNumbers: React.FC<TableNumberProps> = (props) => {
         numbers,
         startTimer,
         isTableItems,
+        isCountTimer,
         setRandomSortFirstHalf,
         setRandomSortSecondHalf
     } = props;
@@ -60,6 +62,7 @@ const TableNumbers: React.FC<TableNumberProps> = (props) => {
                         <ItemTable
                             id={el?.id}
                             value={el?.value}
+                            isCountTimer={isCountTimer}
                             startTimer={startTimer}
                         />
                     </div>

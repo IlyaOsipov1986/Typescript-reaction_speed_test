@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {GridNumbers} from "../../types/data";
 import TableNumbers from "../TableNumbers/TableNumbers";
+import ResultModal from "../ResultModal/ResultModal";
 
 const App: React.FC = () => {
 
@@ -10,6 +11,7 @@ const App: React.FC = () => {
     const [isTimer, setTimer] = useState(false);
     const [isSecondsTimer, setSecondsTimer] = useState(0);
     const [isCountTimer, setCountTimer] = useState(1);
+    const [activeModalResult, setActiveModalResult] = useState(false);
 
     const generateNumbers  = (value: number) => {
         const numberArr = []
@@ -29,13 +31,8 @@ const App: React.FC = () => {
 
     const deleteItemsTable = (id?: number) => {
         const filteredItems = isTableItems.filter(el => el?.id !== id)
-        setTableItems(filteredItems);
-    }
-
-    const onHandleGetItemSecondHalf = () => {
         const itemTableSecond: GridNumbers | undefined = isTableItemsSecond.shift()
-        console.log(itemTableSecond)
-        isTableItems.push({id: itemTableSecond?.id, value: itemTableSecond?.value})
+        setTableItems([...filteredItems, {id: itemTableSecond?.id, value: itemTableSecond?.value}]);
     }
 
     const setRandomSortFirstHalf = (arrayNumbers: GridNumbers[]) => {
@@ -46,17 +43,20 @@ const App: React.FC = () => {
         setTableItemsSecond(arrayNumbers);
     }
 
+    const closeModal = () => {
+        setActiveModalResult(false)
+        setSecondsTimer(0);
+    }
+
     const startTimer = (id?: number) => {
-        const findFirstNumbers = numbers.find(el => el.id === id)
+        const findFirstNumbers = isTableItems.find(el => el.id === id)
         if (!isTimer && findFirstNumbers?.id === 1) {
             setTimer(true)
             setCountTimer(isCountTimer + 1)
             deleteItemsTable(id)
-            onHandleGetItemSecondHalf()
         } else if(isCountTimer === findFirstNumbers?.id) {
             setCountTimer(isCountTimer + 1)
             deleteItemsTable(id)
-            onHandleGetItemSecondHalf()
         }
     }
 
@@ -67,6 +67,12 @@ const App: React.FC = () => {
             setCountTimer(1);
             generateNumbers(50);
         }
+    }
+
+    const showResult = () => {
+        setTimer(false)
+        setCountTimer(1);
+        generateNumbers(50);
     }
 
     useEffect(() => {
@@ -84,8 +90,9 @@ const App: React.FC = () => {
 
     useEffect(() => {
         let isMounted = true;
-        if (isCountTimer === 26) {
-            isMounted && stopTimer()
+        if (isCountTimer === 51) {
+            isMounted && showResult()
+            isMounted && setActiveModalResult(true)
         }
         return () => {
             isMounted = false;
@@ -112,12 +119,17 @@ const App: React.FC = () => {
                         setRandomSortSecondHalf={setRandomSortSecondHalf}
                         startTimer={startTimer}
                         numbers={numbers}
+                        isCountTimer={isCountTimer}
                     />
                 </div>
             </div>
         </div>
+        <ResultModal
+            activeModalResult={activeModalResult}
+            isSecondsTimer={isSecondsTimer}
+            closeModal={closeModal}
+        />
     </div>
   );
 }
-
 export default App;

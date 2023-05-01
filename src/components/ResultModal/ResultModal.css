@@ -1,0 +1,64 @@
+/*------Основной стиль модального окна--------------------------------------------------------------------------------*/
+.registration-modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+    z-index: 10;
+}
+/*-----Активация модального окна при клике------------------------------------------------------------------------------*/
+.registration-modal.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+/*------Стилизация самого модального окна-----------------------------------------------------------------------------*/
+.registration-modal__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.33em 1.33em;
+    width: 32em;
+    height: 8em;
+    border-radius: 0.44em;
+    background-color: #FFFFFF;
+    position: relative;
+}
+/*------Стилизация сообщения модально окна--------------------------------------------------------------------------*/
+.registration-modal__content h4 {
+    font-weight: 500;
+    font-size: 1.22em;
+    line-height: 130%;
+    color: rgba(54, 59, 77, 0.9);
+}
+/*------Стилизация кнопки модального окна-----------------------------------------------------------------------------*/
+.registration-modal__content button {
+    font-weight: 500;
+    font-size: 1em;
+    line-height: 150%;
+    width: 8.38em;
+    height: 2.66em;
+    border-radius: 0.22em;
+    color: #FFFFFF;
+    background-color: #46a;
+    cursor: pointer;
+}
+/*------ Адаптивная версия--------------------------------------------------------------------------------------------*/
+@media (max-width: 800px) {
+    .registration-modal__content {
+        font-size: 14px;
+    }
+}
+@media (max-width: 400px) {
+    .registration-modal__content {
+        font-size: 12px;
+    }
+}
