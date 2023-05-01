@@ -1,0 +1,7 @@
+.table-numbers {
+    width: calc(100px * 5);
+    height: calc(100px * 5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}

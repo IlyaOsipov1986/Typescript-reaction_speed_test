@@ -1,0 +1,28 @@
+.item-table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    font-size: 1.33em;
+    color: #FFFFFF;
+    font-weight: 600;
+    background: #46a;
+    cursor: pointer;
+}
+.item-table-active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    font-size: 1.33em;
+    color: #FFFFFF;
+    font-weight: 600;
+    background: #46a;
+    cursor: pointer;
+}
+.item-table-active:active {
+    background: #FFFFFF;
+    color: #4466aa;
+}
