@@ -1,7 +1,7 @@
 .table-numbers {
-    width: calc(100px * 5);
-    height: calc(100px * 5);
+    width: calc(7em * 5);
+    height: calc(7em * 5);
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 0.22em;
 }

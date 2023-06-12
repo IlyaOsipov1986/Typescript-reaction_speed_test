@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90px;
-    height: 90px;
+    width: 5em;
+    height: 5em;
     font-size: 1.33em;
     color: #FFFFFF;
     font-weight: 600;
@@ -14,8 +14,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90px;
-    height: 90px;
+    width: 5em;
+    height: 5em;
     font-size: 1.33em;
     color: #FFFFFF;
     font-weight: 600;
